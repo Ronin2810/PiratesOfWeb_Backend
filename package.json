@@ -4,6 +4,7 @@
   "description": "Welcome to Pirates of Web, an exciting online treasure hunt game based on the theme of cars! In this game, players will embark on a thrilling journey filled with riddles, clues, and the quest to find the ultimate treasure. The project is built using Node.js, Express.js, HTML, CSS, JavaScript, and MySQL.",
   "main": "server.js",
   "scripts": {
+    "build":"webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
