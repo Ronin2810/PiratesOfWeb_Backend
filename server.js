@@ -10,7 +10,7 @@ const cors = require('cors');
 
 app.use(cors());
 const corsOptions = {
-    origin: 'https://pirates-of-web-frontend.vercel.app/', // Replace with your frontend's deployed URL
+    origin: '', // Replace with your frontend's deployed URL
     optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
   };
   
