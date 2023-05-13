@@ -4,7 +4,17 @@ const path = require("path")
 const session = require("express-session")
 require('dotenv').config();
 const db = require('./db/conn')
+const cors = require('cors');
 
+
+
+app.use(cors());
+const corsOptions = {
+    origin: 'https://example-frontend.vercel.app', // Replace with your frontend's deployed URL
+    optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
+  };
+  
+  app.use(cors(corsOptions));
 app.use(session({
     secret: process.env.SECRET,
     saveUninitialized: false,
@@ -25,7 +35,7 @@ app.use(express.urlencoded({extended:false}))
 app.use(player_router)
 app.use(admin_router)
 
-app.listen(5000, () => {
+app.listen(process.env.PORT, () => {
     console.log("Server listening on port 5000... http://localhost:5000");
 })
 
