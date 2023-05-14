@@ -14,7 +14,7 @@ const corsOptions = {
     optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
   };
   
-  app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(session({
     secret: process.env.SECRET,
     saveUninitialized: false,
@@ -35,7 +35,7 @@ app.use(express.urlencoded({extended:false}))
 app.use(player_router)
 app.use(admin_router)
 
-app.listen(process.env.PORT, () => {
+app.listen(5000, () => {
     console.log("Server listening on port 5000... http://localhost:5000");
 })
 
