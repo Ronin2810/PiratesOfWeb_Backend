@@ -13,6 +13,9 @@ const login  = async(req,res,next)=>{
             let admin = data[0][0]
             if (admin === undefined) {
                 req.session.isAuth = false
+                console.log("sending NO for login");
+                const cookie = {isAuth:false}
+                res.send({res:"NO",cookie:cookie})
                 return
             }
             
@@ -27,19 +30,31 @@ const login  = async(req,res,next)=>{
                     }
                     else {
                         req.session.isAuth = false
+                        console.log("sending NO for login");
+                        const cookie = {isAuth:false}
+                        res.send({res:"NO",cookie:cookie})
                     }
                 })
                 .catch((err) => {
                     req.session.isAuth = false
+                    console.log("sending NO for login");
+                    const cookie = {isAuth:false}
+                    res.send({res:"NO",cookie:cookie})
                 })
             
         }) 
         .catch((err)=>{
             console.log(err);
             req.session.isAuth = false;
+            console.log("sending NO for login");
+            const cookie = {isAuth:false}
+            res.send({res:"NO",cookie:cookie})
         })       
     } catch (error) {
         console.log(error);
+        console.log("sending NO for login");
+        const cookie = {isAuth:false}
+        res.send({res:"NO",cookie:cookie})
         return
     }
 }

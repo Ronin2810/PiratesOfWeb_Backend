@@ -72,6 +72,8 @@ const login  = async(req,res,next)=>{
             // console.log("Fetched user in backend",user);
             if (user === undefined) {
                 req.session.isAuth = false
+                console.log("sending NO for login");
+                res.send({res:"NO"})
                 return
             }
             
@@ -89,16 +91,22 @@ const login  = async(req,res,next)=>{
                     }
                     else {
                         req.session.isAuth = false
+                        console.log("Sending NO for login");
+                        res.send({res:"NO"})
                     }
                 })
                 .catch((err) => {
                     req.session.isAuth = false
+                    console.log("Sending NO for login");
+                    res.send({res:"NO"})
                 })
             
         }) 
         .catch((err)=>{
             console.log(err);
             req.session.isAuth = false;
+            console.log("Sending NO for login");
+            res.send({res:"NO"})
         })       
     } catch (error) {
         console.log(error);

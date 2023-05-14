@@ -44,6 +44,7 @@ player_router.post('/player/login',controller.login,async(req,res)=>{
     }
     else{
         // res.render('login')
+        console.log("Sending NO for login");
         res.send({res:"NO"})
     }
 })
@@ -153,13 +154,13 @@ player_router.get('/player/riddle/q/:id',controller.isAuth,async(req,res)=>{
             res.send({res:"OK",question:qno})
         }
         else{
-            await db.promise().query(`update user_status set question_no=${data} where user_id = ${req.session.user_id};`)
-            .then((data)=>{
-                console.log(data);
-            })
-            .catch((err)=>{
-                console.log(err);
-            })
+            // await db.promise().query(`update user_status set question_no=${data} where user_id = ${req.session.user_id};`)
+            // .then((data)=>{
+            //     console.log(data);
+            // })
+            // .catch((err)=>{
+            //     console.log(err);
+            // })
             // res.render(`q${data}`,{msg:""});
             res.send({res:"NO",question:data})
         }
