@@ -73,7 +73,7 @@ const login  = async(req,res,next)=>{
             if (user === undefined) {
                 req.session.isAuth = false
                 console.log("sending NO for login");
-                res.send({res:"NO"})
+                res.send({res:"NO1"})
                 return
             }
             
@@ -92,7 +92,7 @@ const login  = async(req,res,next)=>{
                     else {
                         req.session.isAuth = false
                         console.log("Sending NO for login");
-                        res.send({res:"NO"})
+                        res.send({res:"NO2"})
                     }
                 })
                 .catch((err) => {

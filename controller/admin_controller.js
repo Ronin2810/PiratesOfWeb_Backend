@@ -15,7 +15,7 @@ const login  = async(req,res,next)=>{
                 req.session.isAuth = false
                 console.log("sending NO for login");
                 const cookie = {isAuth:false}
-                res.send({res:"NO",cookie:cookie})
+                res.send({res:"NO1",cookie:cookie})
                 return
             }
             
@@ -32,7 +32,7 @@ const login  = async(req,res,next)=>{
                         req.session.isAuth = false
                         console.log("sending NO for login");
                         const cookie = {isAuth:false}
-                        res.send({res:"NO",cookie:cookie})
+                        res.send({res:"NO2",cookie:cookie})
                     }
                 })
                 .catch((err) => {
