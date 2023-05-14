@@ -31,30 +31,32 @@ const register = async (req,res,next)=>{
         return
     }
 
-    try {
-        await db.promise().query(`insert into users(user_name,user_email,user_password) values ('${name}','${email}','${password}');`)
-        .then(async(data)=>{
-            // console.log(data[0]);
-            req.session.user_id = data[0]['insertId']
-            req.session.email = email
-            req.session.entity = "player"
-            req.session.isAuth = true
-
-            await db.promise().query(`insert into user_status values (${req.session.user_id},1);`)
-            .then((data)=>{
-                console.log(data);
+    if (!req.session.alreadyRegistered) {
+        try {
+            await db.promise().query(`insert into users(user_name,user_email,user_password) values ('${name}','${email}','${password}');`)
+            .then(async(data)=>{
+                // console.log(data[0]);
+                req.session.user_id = data[0]['insertId']
+                req.session.email = email
+                req.session.entity = "player"
+                req.session.isAuth = true
+    
+                await db.promise().query(`insert into user_status values (${req.session.user_id},1);`)
+                .then((data)=>{
+                    console.log(data);
+                })
+                .catch((err)=>{
+                    console.log(err);
+                })
+                next()
+                return
             })
             .catch((err)=>{
                 console.log(err);
             })
-            next()
-            return
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
-    } catch (error) {
-        console.log(error);
+        } catch (error) {
+            console.log(error);
+        }
     }
     next()
 }
